@@ -3,13 +3,15 @@ public class ContaMagica {
     public static final int SILVER = 0;
     public static final int GOLD = 1;
     public static final int PLATINUM = 2;
+    double saldo;
+    int status;
     
     double getSaldo(){
-        return -1;
+        return saldo;
     }
 	
     int getStatus(){
-        return -1;
+        return status;
     }
 	
     void deposito(int valor) {
