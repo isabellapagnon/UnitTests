@@ -14,7 +14,8 @@ public class ContaMagica {
         return status;
     }
 	
-    void deposito(int valor)throws IllegalArgumentException {
+    void deposito(int valor)//throws IllegalArgumentException
+    {
         if (valor < 0) {
             throw new IllegalArgumentException("Valor inválido!");  
         }
@@ -33,8 +34,12 @@ public class ContaMagica {
         
     }
 
-    void retirada(int valor) throws IllegalArgumentException{
+    void retirada(int valor) //throws IllegalArgumentException
+     {
         if (valor < 0) {
+            throw new IllegalArgumentException("Valor inválido!");
+        }
+        if (valor > saldo){
             throw new IllegalArgumentException("Valor inválido!");
         }
         else {
@@ -43,32 +48,10 @@ public class ContaMagica {
         if (status == PLATINUM && saldo < 100000 ){
             status = GOLD;
         }
-        if (status == GOLD && saldo < 25000 ){
+        else if (status == GOLD && saldo < 25000 ){
             status = SILVER;
         }
         
 
     }
-//    public static void main(String args[]){
-//        ContaMagica conta = new ContaMagica();
-//        System.out.println("----------------//");
-//        conta.deposito(25000);
-//        System.out.println(conta.getSaldo());
-//        System.out.println(conta.getStatus());
-//        conta.deposito(30000);
-//        System.out.println(conta.getSaldo());
-//        System.out.println(conta.getStatus());
-//        conta.deposito(200000);
-//        System.out.println(conta.getSaldo());
-//        System.out.println(conta.getStatus());
-//        System.out.println("----------------//");
-//        conta.retirada(155001);
-//        System.out.println(conta.getSaldo());
-//        System.out.println(conta.getStatus());
-//        conta.retirada(90000);
-//        System.out.println(conta.getSaldo());
-//        System.out.println(conta.getStatus());
-//
-//        System.out.println("-------- FIM --------");
-//    }
 }
