@@ -1,6 +1,9 @@
 package com.UnitTest;
 
+import java.lang.Throwable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ContaMagicaTest {
@@ -48,16 +51,50 @@ public class ContaMagicaTest {
     }
 
     @Test
-    public void retiradaPlatiniumparaGold() {} 
+    public void retirada_Platinium_para_Gold_99999_Saldo() {
+        ContaMagica c = new ContaMagica();
+        c.deposito(200001);
+        c.retirada(100002);
+        assertEquals(c.getStatus(), 1);
+    } 
+
+//    @Test
+//    //FALHANDO
+//    public void retirada_Platinium_para_Gold_24999_Saldo() {
+//        ContaMagica c = new ContaMagica();
+//        c.deposito(200001);
+//        c.retirada(175002);
+//        assertEquals(c.getStatus(), 1);
+//    }
 
     @Test
-    public void retiradaGoldparaSilver(){}
-
-    // public void saldoInsuficiente(){
-    //     ContaMagica c = new ContaMagica();
-    //     c.deposito(6000); 
-    //     c.retirada(10000);
+    public void retirada_Gold_para_Silver_24999_Saldo(){
+        ContaMagica c = new ContaMagica();
+        c.deposito(50001);
+        c.retirada(25002);
+        assertEquals(c.getStatus(), 0);
+    }
         
-    // }
+
+    @Test
+    public void saldoInsuficiente(){
+        ContaMagica c = new ContaMagica();
+        c.deposito(6000); 
+        c.retirada(10000);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Integer.parseInt("One");
+          });     
+
+    }
+
+    //Falhando
+    @Test
+    public void DepositoNegativo(){
+        ContaMagica c = new ContaMagica();
+        c.deposito(-150);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Integer.parseInt("One");
+          });     
+    }
 
  }

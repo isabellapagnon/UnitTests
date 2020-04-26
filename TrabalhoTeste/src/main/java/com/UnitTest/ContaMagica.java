@@ -11,6 +11,16 @@ public class ContaMagica {
     }
 	
     int getStatus(){
+        return status;
+    }
+	
+    void deposito(int valor)throws IllegalArgumentException {
+        if (valor < 0) {
+            throw new IllegalArgumentException("Valor inválido!");  
+        }
+        else {
+            saldo = saldo + valor;
+        }
         if (saldo <= 50000){
             status = SILVER;
         }
@@ -20,41 +30,45 @@ public class ContaMagica {
         if (saldo > 200000){
             status = PLATINUM;
         }
-        return status;
-    }
-	
-    void deposito(int valor) //throws INVALID_OPER_EXCEPTION 
-    {
-        if (valor < 0) {
-            //throw new Exception();
-            System.out.println("Valor inválido!");  
-        }
-        else {
-            saldo = saldo + valor;
-        }
         
     }
 
-    void retirada(int valor) {
+    void retirada(int valor) throws IllegalArgumentException{
         if (valor < 0) {
-            //throws INVALID_OPER_EXCEPTION
-            System.out.println("Valor inválido!");  
+            throw new IllegalArgumentException("Valor inválido!");
         }
         else {
             saldo = saldo - valor;
         }
+        if (status == PLATINUM && saldo < 100000 ){
+            status = GOLD;
+        }
+        if (status == GOLD && saldo < 25000 ){
+            status = SILVER;
+        }
+        
 
     }
-    public static void main(String args[]){
-        ContaMagica conta = new ContaMagica();
-        System.out.println("----------------//");
-        conta.deposito(25000);
-        System.out.println(conta.getSaldo());
-        System.out.println(conta.getStatus());
-        conta.deposito(30000);
-        System.out.println(conta.getSaldo());
-        System.out.println(conta.getStatus());
-
-        System.out.println("-------- FIM --------");
-    }
+//    public static void main(String args[]){
+//        ContaMagica conta = new ContaMagica();
+//        System.out.println("----------------//");
+//        conta.deposito(25000);
+//        System.out.println(conta.getSaldo());
+//        System.out.println(conta.getStatus());
+//        conta.deposito(30000);
+//        System.out.println(conta.getSaldo());
+//        System.out.println(conta.getStatus());
+//        conta.deposito(200000);
+//        System.out.println(conta.getSaldo());
+//        System.out.println(conta.getStatus());
+//        System.out.println("----------------//");
+//        conta.retirada(155001);
+//        System.out.println(conta.getSaldo());
+//        System.out.println(conta.getStatus());
+//        conta.retirada(90000);
+//        System.out.println(conta.getSaldo());
+//        System.out.println(conta.getStatus());
+//
+//        System.out.println("-------- FIM --------");
+//    }
 }
